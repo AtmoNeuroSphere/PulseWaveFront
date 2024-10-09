@@ -1,0 +1,600 @@
+import torch
+import torch.nn as nn
+import numpy as np
+import matplot.pyplot as plt
+
+num_nodes = 100
+time_steps = 1000
+frequency = 1
+amplitude = 1.0
+sampling_rate = 1000
+infrared_voltage = 0.7
+pulse_width_modulatoin_frequency = 50
+
+def generate_spwm_signal(time, frequency, amplitude):
+    sine_wave = amplitude * np.sin(2 * np.pi * frequency * time)
+    pwm_signal = np.where(sine_wave > np.random.rand(len(time)), 1, 0)
+    return pwm_signal
+
+def infrared_storage(pwm_signal, voltage):
+    stored_signal = pwm_signal * voltage
+    return stored_signal
+
+def directional_transmission(stored_signal, phase_shift):
+    transmitted_signal = np.roll(stored_signal, phase_shift)
+
+time = np.linspace(0, 1, time_steps)
+
+spwm_signal = generate_spwm_signal(time, frequency, amplitude)
+
+infrared_stored_signal = infrared_storage(spwm_signal, infrared_voltage)
+
+transmitted_signal = directional_transmission(infrared_stored_signal, phase_shift=100)
+plt.figure(figsize=(15, 8))
+
+plt.subplot(3, 1, 1)
+plt.plot(time, spwm_signal, color='blue', label='SPWM Signal')
+plt.title('Sinusoidal Pulse Width Modulation (SPWM) Signal')
+plt.xlabel('Time (s)')
+plt.ylabel('Amplitude')
+plt.grid(True)
+plt.legend()
+
+plt.subplot(3, 1, 2)
+plt.plot(time, infrared_stored_signal, color='red', label='Infrared Stored Signal')
+plt.title('Data Stored using Infrared Voltage Energy')
+plt.xlabel('Time (s)')
+plt.ylabel('Voltage')
+plt.grid(True)
+plt.legend()
+
+plt.subplot(3, 1, 3)
+plt.plot(time, tranmitted_signal, color='green', label=Transmitted Signal')
+plt.title('Transmitted Signal towards a Given Direction')
+plt.xlabel('Time (s)')
+plt.ylabel('Amplitude')
+plt.grid(True)
+plt.legend()
+
+plt.tight_layout()
+plt.show()
+
+import torch
+import torch.nn as nn
+import numpy as np
+import matplotlib.pyplot as plt
+
+num_nodes = 100
+time_steps = 1000
+frequency = 1
+amplitude = 1.0
+sampling_rate = 1000
+infrared_voltage = 0.7
+pulse_width_modulation_frequency = 50
+attenuation_factor = 0.5 
+noise_intensity = 0.2
+multi_path_delay = 50
+multi_path_amplitude = 0.3
+
+def generate_spwm_signal(time, frequency, amplitude):
+    sine_wave = amplitude * np.sin(2 * np.pi * frequency * time)
+    pwn_signal = np.where(sine_wave > np.random.rand(len(time)), 1, 0)
+    return pwm_signal
+
+def infrared_storage(pwm_signal, voltage):
+    stored_signal = pwm_signal * voltage
+    return stored_signal
+
+def directional_transmission(stored_signal, phase_shift):
+    transmitted_signal = np.roll(stored_signal, phase_shift)
+    return transmitted_signal
+
+def attenuate_signal(signal, attenuation_factor):
+    attenuation = np.exp(-attenuation_factor * np.arange(len(signal)) / len(signal))
+    attenuated_signal = signal * attenuation
+    return attenuated_signal
+
+def add_noise(signal, noise_intensity):
+    noise = noise_intensity * np.random.randn(len(signal))
+    return noisy_signal
+
+def multi_path_effects(signal, delaym amplitude):
+    delayed_signal = np.roll(signal, delay) * amplitude
+    combined_signal = signal + delayed_signal
+    return combined_signal
+
+time = np.linspace(0, 1, time_steps)
+
+spwm_signal = generate_spwm_signal(time, frequency, amplitude)
+
+infrared_stored_signal = infrared_storage(spwm_signal, infrared_voltage)
+
+transmitted_signal = directional_transmission(infreared_stored_signal, phase_shift=100)
+
+attenuated_signal = attenuate_signal(transmitted_signal, attenuation_factor)
+
+noisy_signal, add_noise(attenuated_signal, noise_intensity)
+
+final_signal = multi_path_effects(noisy_signal, multi_path_delay, mutli_path_amplitude
+
+plt.figure(figsize=(15, 12))
+
+plt.subplot(4, 1, 1)
+plt.plot(time, spwm_signal, color='blue', label='SPWM Signal')
+plt.title('Sinusodial Pulse Width Modulation (SPWM) Signal')
+plt.xlabel('Time (s)')
+plt.ylabel('Amplitude')
+plt.grid(True)
+plt.legend()
+
+plt.subplot(4, 1, 2)
+plt.plot(time, infrared_stored_signal, color='red', label='Infrared Stored Signal')
+plt.title('Data Stored using Infrared Voltage Energy')
+plt.xlabel('Time (s)')
+plt.ylabel('Voltage')
+plt.grid(True)
+plt.legend()
+
+plt.subplot(4, 1, 3)
+plt.plot(time, transmited_signal, color='green', label='Transmitted Signal')
+plt.title('Transmitted Signal towards a Given Direction')
+plt.xlabel('Time (s)')
+plt.ylabel('Amplitude')
+plt.grid(True)
+plt.legend()
+
+plt.subplot(4, 1, 4)
+plt.plot(time, final_signal, color='purple', lable='Final Signal with Attenuation, Noise, and Multi-Path Effects')
+plt.title('Final Signal in Dense Space')
+plt.xlabel('Time (s)')
+plt.ylabel('Amplitude')
+plt.grid(True)
+plt.legend()
+
+plt.tight_layout()
+plt.show()
+
+import torch
+import torch.nn as nn
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animatoin import FuncAnimation
+
+num_nodes = 100
+time_steps = 1000
+frequency = 1
+amplitude = 1.0
+sampling_rate = 1000
+infrared_voltage = 0.7
+pulse_width_modulation_frequency = 50
+atenuation_factor = 0.5
+noise_intensity = 0.2
+multi_path_delay = 50
+multi_path_amplitude = 0.3
+
+def generate_spwm_signal(time, frequency, amplitude):
+    sine_wave = amplitude * np.sin(2 * np.pi * frequency * time)
+
+    pwn_signal = np.where(sine_wave > np.random.rand(len(time)), 1, 0)
+    return pwm_signal
+
+def infrared_storage(pwm_signal, voltage):
+    stored_signal = pwm_signal * voltage
+    return stored_signal
+
+def directional_transmission(stored_signal, phase_shift):
+      transmitted_signal = np.roll(stored_signal, phase_shift)
+      return transmitted_signal
+
+def add_noise(signal, noise_intensity):
+    noise = noise_intensity * np.random.randn(len(signal))
+    noisy_signal = signal + noise
+    return noisy_signal
+
+def multi_path_effects(signal, delay, amplitude):
+  delayed_signal = np.roll(signal, delay) * amplitude
+  combined_signal = signal + delayed_signal
+  return combined_signal
+
+time = np.linspace(0, 1, time_steps)
+
+spwm_signal = generate_spwm_signal(time, frequency, amplitude)
+
+infrared_stored_signal = infrared_storage(spwm_signal, infrared_voltage)
+transmitted_signal = directional_transmission(infrared_stored_signal, phase_shift=100)
+
+attenuated_signal = attenuated_signal(transmitted_signal, attenuation_factor)
+
+noisy_signal = add_noise(attenuated_signal, noise_intensity
+
+final_signal = multi_paht_effects(noisy_signal, multi_path_delay, multi_path_amplitude
+
+fig, ax = plt.subplots(figsize=(15, 6))
+line, = ax.plot([], [], color='purple')
+ax.set_xlim(0, time_steps)
+ax.set_ylim(-1.5, 1.5)
+ax.set_title('Animated Signal Transmission')
+ax.set_xlabel('Time Step')
+ax.set_ylabel('Amplitude')
+ax.grid(True)
+
+def animate(frame):
+    current_signal = np.roll(final_signal, frame)
+    line.set_data(np.arange(len(current_signal)), current_signal)
+    return line,
+
+ani = FuncAnimation(fig, animate, frames=time_steps, interval=20, blit=True)
+
+plt.show()
+
+import torch
+import torch.nn as nn
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+
+num_nodes = 100
+time_steps = 1000
+frequency = 1
+amplitude = 1.0
+sampling_rate = 1000
+infrared_voltage = 0.7
+pulse_width_modulation_frequency = 50
+attenuation_factor = 0.5
+noise_intensity = 0.2
+mutli_path_delay = 50
+multi_path_amplitude = 0.3
+
+encryption_keys = [0.5, 1.2, 0.9]
+
+def generate_spwm_signal(time, frequency, amplitude):
+    sine_wave = amplitude * np.sin(2 * np.pi * frequency * time)
+    pwm_signal = np.where(sine_wave > np.random.rand(len(time)), 1, 0)
+    return pwm_signal
+
+def infrared_storage(pwm_signal, voltage):
+    stored_signal = pwm_signal * voltage
+    return stored_signal
+
+def directional_transmissoin(stored_signal, phase_shift):
+    transmitted_signal = np.roll(stored_signal, phase_shift)
+    return transmitted_signal
+
+def attenuate_signal(signal, attenuation_factor):
+    attenuatoin = np.exp(-attenuation_factor * np.arange(len(signal)) / len(signal))
+    attenuated_signal = signal * attenuation
+    return attenuated_signal
+
+def add_noise(signal, noise_intensity):
+    noise = noise_intensity * np.random.randn(len(signal))
+    noisy_signal = signal + noise
+    return noisy_signal
+
+def multi_path_effects(signal, delay, amplitude):
+    delayed_signal = np.roll(signal, delay) * amplitude
+    combined_signal = signal + delayed_signal
+    return combined_signal
+
+def layered_encryption(signal, keys):
+    encrypted_signal = signal.copy()
+    for key in keys:
+        encrypted_signal = np.sin(encrypted_signal * key)
+        return encrypted_signal
+
+def layered_decryption(encrypted_signal, keys):
+    decrypted_signal = encrypted_signal.copy()
+    for key in reversed(keys):
+        decrypted_signal = np.arcsin(decrypted)signal) / key
+        return decrypted_signal
+
+time = np.linspace(0, 1, time_steps)
+
+spwm_signal = generate_spwm_signal(time, frequency, amplitude)
+
+infrared_stored_signla = infrared_storage(spwm_signal, infreared_voltage)
+
+transmitted_signal = directional_transmission(infrared_stored_signal, phase_shift=100)
+
+attenuated_signal = attenuate_signal(transmitted_signal, attenuation_factor)
+
+noisy_signal = add_noise(attenuated_signal, noise_intensity)
+
+final_signal = multi_path_effects(noisy_signal, multi_path_delay, multi_path_amplitude)
+
+encrypted_signal = layered_encryption(final_signal, encryption_keys)
+
+decrypted_signal = layered_decryption(encrypted_signal, encryption_keys)
+
+fig, ax = plt.subplots(2, 1, figsize=(15, 12))
+
+ax[0].plot(np.arange(len(encrypted_signal)), encrypted_signal, color='purple')
+ax[0].set_title('Encrypted Signal w/Layered VPN Protection')
+ax[0].set_xlabel('Time Step')
+ax[0].set_ylabel('Amplitude')
+ax[0].grid(True)
+
+ax[1].plot(np.arange(len(decrypted_signal)), decrypted_signal, color='green')
+ax[1].set_title('Decrypted Signal w/Layered VPN Decryption')
+ax[1].set_xlabel('Time Step')
+ax[1].set_ylabel('Amplitude')
+ax[1].grid(True)
+
+plt.tight_layour()
+plt.show()
+
+import torch
+import torch.nn as nn
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+
+num_nodes = 100
+time_steps = 1000
+frequency = 1
+amplitude = 1.0
+sampling_rate = 1000
+infrared_voltage = 0.7
+pulse_width_modulatoin_frequency = 50
+attenuation_factor = 0.5
+noise_intensity = 0.2
+multi_path_delay = 50
+multi_path_amplitude = 0.3
+
+encryption_keys = [0.5, 1.2, 0.9]
+
+def generate_spwm_signal(time, frequency, amplitude):
+    sine_wave = amplitude * np.sin(2 * np.pi * frequency * time)
+    threshold = np.mean(sine_wave_
+    pwm_signal = np.where(sine_wave > threshold, 1, 0)
+    return pwm_signal
+
+def infrared_storage(pwm_signal, voltage):
+    stored_signal = pwm_signal * voltage
+    return stored_signal
+
+def directional_transmissoin(stored_signal, phase_shift):
+    transmitted_signal = np.roll(stored_signal, phase_shift)
+    return transmitted_signal
+
+def attenuate_signal(signal, attenuation_factor):
+    attenuation = np.exp(-attenuation_factor * np.arange(len(signal)) / len(signal))
+    attenuated_signal = signal * attenuation
+    return attenuated_signal
+
+def add_noise(signal, noise_intensity):
+    noise = noise_intensity * np.random.randn(len(signal))
+    noisy_signal = signal + noise
+    return noisy signal
+
+def multi_path_effects(signal, delay, amplitude):
+    delayed_signal = np.roll(signal, delay) * amplitude
+    combined_signal = signal + delayed_signal
+    return combined_signal
+
+def layered_encryption(signal, keys):
+    encrypted_signal = signal.copy()
+    for key in keys:
+        encrypted_signal = np.sin(encrypted_signal * key)
+    return encrypted_signal
+
+def layered_decryption(encrypted_signal, keys):
+    decrypted_signal = encrypted_signal.copy()
+    for key in reversed(keys):
+        decrypted_signal = np.arcsin(decrypted_signal) / key
+    return decrypted_signal
+
+def validate_encryption(original_signal, encrypted_signal, decrypted_signal):
+    assert np.allclose(original_signal, decrypted_signal, atol=1e-2), "Decryption failed to recover the original signal."
+
+time = np.linspace(0, 1, time_steps)
+
+spwm_signal = generate_spwm_signal(time, frequency, amplitude)
+
+infrared_stored_signal = infrared_storage(spwm_signal, infrared_voltage)
+
+transmitted_signal = directional_transmission(infrared_stored_signal, phase_shift=100)
+
+attenuated_signal = attenuate_signal(transmitted_signal, attenuation_factor)
+
+noisy_signal = add_noise(attenuated_signal, noise_intensity)
+
+final_signal = multi_path_effects(noisy_signal, multi_path_delay, multi_path_amplitude)
+
+encrypted_signal = layered_encryption(final_signal, encryption_keys)
+
+decrypted_signal = layered_decryption(encrypted_signal, encryption_keys)
+
+fig, ax= plt.subplots(2, 1, figsize=(15, 12))
+
+ax[0].plot(np.arant(len(encrypted_signal)), encrypted_signal, color='purple')
+ax[0].set_title('Encrypted Signal w/Layered VPN Protection')
+ax[0].set_xlabel('Time Step')
+ax[0].set_ylabel('Amplitude')
+ax[0].grid(True)
+
+ax[1].plot(np.arange(len(decrypted_signal)), decrypted_signal, color='green')
+ax[1].set_title('Decrypted Signal w/Layered VPN Decryption')
+ax[1].set_xlabel('Time Step')
+ax[1].set_ylabel('Amplitude')
+ax[1].grid(True)
+
+plt.tight_layout()
+plt.show()
+
+import torch
+import torch.nn as nn
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+
+num_nodes = 100
+time_steps = 1000
+frequency = 1
+amplitude = 1.0
+sampling_rate = 1000
+infrared_voltage = 0.7
+pulse_width_modulation_frequency = 50
+attenuation_factor = 0.5
+noise_intensity = 0.2
+multi_path_delay = 50
+multi_path_amplitude = 0.3
+
+encryption_keys = [0.5, 1.2, 0.9]
+
+def generate_spwm_signal(time, frequency, amplitude):
+    sine_wave = amplitude * np.sin(2 * np.pi * frequency * time)
+    threshold = np.mean(sine_wave)
+    pwm_signal = np.where(sine_wave)
+    return pwm_signal
+
+def infrared_storage(pwm_signal, voltage):
+    stored_signal = pwm_signal * voltage
+    return stored_signal
+
+def directional_transmission(stored_signal, phase_shift):
+    transmitted_signal = np.roll(stored_signal, phase_shift)
+    return transmited_signal
+
+def attenuate_signal(signal, attenuation_factor):
+    attenuation = np.exp(-attenuation_factor * np.arange(len(signal)) / len(signal))
+    attenuated_signal = signal * attenuation
+    return attenuated_signal
+
+def add_noise(signal, noise_intensity):
+    noise = noise_intensity * np.random.randn(len(signal))
+    noisy_signal = signal + noise
+    return noisy_signal
+
+def multi_path_effects(signal, delay, amplitude):
+    delayed_signal = np.roll(signal, delay) * amplitude
+    combined_signal = signal + delayed_signal
+    return combined_signal
+
+def layered_encryption(signal, keys):
+    encrypted_signal = signal.copy()
+    for key in keys:
+        encrypted_signal = np.sin(encrypted_signal * key) 
+        return encrypted_signal
+
+def layered_decryption(encrypted_signal, keys):
+    decrypted_signal = encrypted_signal.copy()
+    for key in reveresed(keys):
+        decrypted_signal = np.arcsin(decrypted_signal) / key
+    return decrypted_signal
+
+def validate_encryption(original_signal, encrypted_signal, decrypted_signal):
+    assert np.allclose(original_signal, decrypted_signal, atol=1e-2), "Decryption failed to recover the original signal."
+
+time = np.linspace(0, 1, time_steps)
+
+spwm_signal = generate_spwm_signal(time, frequency, amplitude)
+
+infrared_stored_signal = infrared_storage(spwm_signal, infared_voltage)
+
+transmitted_signal = directional_transmission(infrared_stored_signal, phase_shift=100)
+
+attenuated_signal = attenuate_signal(transmitted_signal, attenuation_factor)
+
+noisy_signal = add_noise(attenuated_signal, noise_intensity)
+
+final_signal = multi_path_effects(noisy_signal, multi_path_delay, multi_path_amplitude_
+
+encrypted_signal = layered_encryption(final_signal, encryption_keys)
+
+decrypted_signal = layered_decryption(encrypted_signal, encryption_keys)
+
+fig, ax = plt.subplots(2, 1, figsize=(15, 12))
+
+ax[0].plot(np.arange(len(encrypted_signal)), encrypted_signal, color='purple')
+ax[0].set_title('Encrypted Signal w/Layered VPN Protection')
+ax[0].set_xlabel('Time Step')
+ax[0].set_ylabel('Amplitude')
+ax[0].grid(True)
+
+ax[1].plot(np.arange(len(decrypted_signal)), decrypted_signal, color='green')
+ax[1].set_title('Decrypted Signal w/Layered VPN Decryption')
+ax[1].set_xlabel('Time Step')
+ax[1].set_ylabel('Amplitude')
+ax[1].grid(True)
+
+plt.tight_layout()
+plt.show()
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+def gradient_color(signal, cmap='viridis'):
+    norm = plt.Normalizer(signal.min(), signal.max())
+    colors = plt.get_cmap(cmap)norm(signal))
+    return colors
+
+time = np.arange(len(final_signal))
+
+colors = gradient_color(final_signal)
+
+fig, ax = plt.subplots(figsize(15, 6))
+
+ax.plot(time, final_signal, color='blue', label='Final Signal')
+
+reflection_factor = 0.3
+reflection = final_signal * reflection_factor
+reflection_color = 'lightblue'
+
+ax.plot(time, -reflection - reflection.min(), color=reflection_color, linestyle='--', alpha=0.6, label='Signal Reflection')
+
+for i in range*len(final_signal) - 1):
+    ax.plot(time[i:i+2], final_signal[i:i+2], color=colors[i], lw=2)
+
+ax.set_title('Final Signal with Reflection and Color Gradient')
+ax.set_ylabel('Amplitude')
+ax.legend()
+ax.grid(True)
+
+plt.show()
+
+import matplotlib.pyplot as plt
+iport numpy as np
+import matplotlib.colors as mcolors
+
+def gradient_color(signal, cmap='viridis'):
+    norm = plt.Normalize(signal.min(), signal.max())
+    colors = plt.get_cmap(cmap(norm(signal))
+    return colors
+
+time = np.arange(len(final_signal))
+
+colors = gradient_color(final_signal)
+
+fig, ax = plt.subplots(figsize=(15, 6))
+
+for i in range(len(final_signal) - 1):
+    ax.plot(time[i:i+2], final_signal[i:i+2], color=colors[i], lw=2)
+
+ax.plot(time, final_signal, color='blue', alpha=0.5, label='Signal')
+
+reflection_factor = 0.3
+reflection = final_signal * reflection_factor
+reflection_color = 'lightblue'
+
+ax.plot(time, -reflection - reflectoin.min(), color=reflection_color, linestyle='--', alpha=0.6, lable='Reflection')
+
+ax.set_title('PulseWavefront')
+ax.set_xlabel('Time Step')
+ax.set_ylabel('Amplitude')
+ax.legend()
+ax.grid(True)
+
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
